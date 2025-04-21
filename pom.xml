@@ -84,6 +84,17 @@
 			<scope>runtime</scope>
 		</dependency>
 
+<!--		day 2.5-->
+<!--		cbryt
+	Chặn tất cả request (return 401 Unauthorized)
+	Yêu cầu bạn phải định nghĩa rõ API nào được phép, API nào cần token
+-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
