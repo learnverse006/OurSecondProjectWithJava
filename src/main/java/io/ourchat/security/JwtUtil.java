@@ -1,5 +1,6 @@
 package io.ourchat.security;
 
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -24,5 +25,30 @@ public class JwtUtil {
                 .setExpiration(new Date(expiry))    // Thời điểm hết hạn
                 .signWith(secretKey)                // Ký token bằng khóa bí mật
                 .compact();                         // Trả chuỗi token
+    }
+
+    // check token có hop lẹ không
+    public boolean isTokenValid(String token){
+        try{
+            Jwts
+                    .parserBuilder() // Khởi tạo trình phân tích token
+                    .setSigningKey(secretKey) // Thiết lập khóa bí mật để xác thực token
+                    .build() // Xây dựng trình phân tích
+                    .parseClaimsJws(token); // Phân tích token và kiểm tra tính hợp lệ
+            return true;
+        }catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    // Lấy email từ token
+    public String extractEmail(String token){
+        return Jwts
+                .parserBuilder() // Khởi tạo trình phân tích token
+                .setSigningKey(secretKey) // Thiết lập khóa bí mật để xác thực token
+                .build() // Xây dựng trình phân tích
+                .parseClaimsJws(token) // Phân tích token và kiểm tra tính hợp lệ
+                .getBody() // Lấy phần thân của token
+                .getSubject(); // Lấy email từ phần subject của token
     }
 }

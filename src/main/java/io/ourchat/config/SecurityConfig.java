@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+
 public class SecurityConfig {
 
     @Bean // tạo một Bean (object do Spring quản lý) để dùng lại ở mọi nơi

@@ -6,12 +6,13 @@ import io.ourchat.model.User;
 import io.ourchat.repo.UserRepository;
 import io.ourchat.security.JwtUtil;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController
+@RestController // ý nghĩa tương tự @Controller (web controller: nhận và xử lí từ client/web) + @ResponseBody (trả về JSON)
 @RequestMapping("/api/auth")
 
 public class AuthController {
@@ -64,4 +65,12 @@ public class AuthController {
                     );
                 }).orElse(ResponseEntity.badRequest().body("Email không tồn tại"));
     }
+    // Để kiểm tra xem token có hợp lệ không
+    @GetMapping("/me")
+    public ResponseEntity<?> getMe() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ResponseEntity.ok("Email hiện tại: " + email);
+    }
+
+
 }
