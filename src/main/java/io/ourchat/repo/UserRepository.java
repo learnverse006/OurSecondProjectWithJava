@@ -1,6 +1,6 @@
 package io.ourchat.repo;
 
-import io.ourchat.model.User;
+import io.ourchat.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
