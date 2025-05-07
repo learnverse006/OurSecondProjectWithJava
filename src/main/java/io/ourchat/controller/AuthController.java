@@ -1,7 +1,7 @@
 package io.ourchat.controller;
 
-import io.ourchat.dto.LoginRequest;
-import io.ourchat.dto.RegisterRequest;
+import io.ourchat.dto.request.LoginRequest;
+import io.ourchat.dto.request.RegisterRequest;
 import io.ourchat.model.entity.User;
 import io.ourchat.repo.UserRepository;
 import io.ourchat.security.JwtUtil;

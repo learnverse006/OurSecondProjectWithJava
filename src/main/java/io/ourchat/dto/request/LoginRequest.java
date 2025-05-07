@@ -1,10 +1,9 @@
-package io.ourchat.dto;
+package io.ourchat.dto.request;
 
 import lombok.Data;
 
 @Data
-public class RegisterRequest {
+public class LoginRequest {
     private String email;
     private String password;
-    private String fullName;
 }
